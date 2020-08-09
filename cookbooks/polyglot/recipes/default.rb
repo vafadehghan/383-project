@@ -1,4 +1,5 @@
-ubuntu_mirror = 'https://mirror.its.sfu.ca/mirror/ubuntu/'
+ubuntu_mirror = 'http://mirror.its.sfu.ca/mirror/ubuntu/'
+# ubuntu_mirror = 'http://mirror.csclub.uwaterloo.ca/ubuntu/'
 ubuntu_release = 'bionic'
 ubuntu_version = '18.04'
 username = 'vagrant'
@@ -43,11 +44,34 @@ package ['build-essential', 'cmake']
 #package 'erlang'  # Erlang
 #package 'ocaml-nox'  # OCaml
 #package ['rustc', 'cargo']  # Rust
-#package 'scala'  # Scala
+#package 'scala'  # Scala 2.11
 #package ['ruby', 'ruby-dev']  # Ruby
 #package ['openjdk-11-jdk', 'maven']  # Java
 #package ['php-cli', 'php-pear']  # PHP
 #package 'clang' # Clang C/C++ compiler
+
+
+# Scala 2.13
+# prerequisite: a Java runtime, openjdk-11-jdk or similar
+#scala_version = '2.13.3'
+#remote_file '/opt/installers/scala.deb' do
+#  # download URL for *.deb from https://scala-lang.org/download/
+#  source "https://downloads.lightbend.com/scala/#{scala_version}/scala-#{scala_version}.deb"
+#end
+#execute 'dpkg -i /opt/installers/scala.deb' do
+#  creates '/usr/bin/scala'
+#end
+
+# SBT
+#execute 'sbt apt key' do
+#  command 'curl -sL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x2EE0EA64E40A89B84B2DF73499E82A75642AC823" | apt-key add'
+#  not_if 'apt-key list | grep "2EE0 EA64"'
+#end
+#file '/etc/apt/sources.list.d/sbt.list' do
+#  content 'deb https://dl.bintray.com/sbt/debian /'
+#  notifies :run, 'execute[apt-get update]', :immediately
+#end
+#package 'sbt'
 
 
 # .NET Core
