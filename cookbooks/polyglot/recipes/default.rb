@@ -1,10 +1,10 @@
-ubuntu_mirror = 'http://mirror.its.sfu.ca/mirror/ubuntu/'
+ubuntu_mirror = 'http://ubuntu.mirror.rafal.ca/ubuntu/'
 # ubuntu_mirror = 'http://mirror.csclub.uwaterloo.ca/ubuntu/'
 ubuntu_release = 'bionic'
 ubuntu_version = '18.04'
 username = 'vagrant'
 user_home = '/home/' + username
-project_home = user_home + '/project/demos' # you may need to change the working directory to match your project
+project_home = user_home + '/project/WebCalc/calc' # you may need to change the working directory to match your project
 
 
 python3_packages = '/usr/local/lib/python3.6/dist-packages'
@@ -38,12 +38,12 @@ package ['build-essential', 'cmake']
 
 # Other core language tools you might want
 
-#package ['python3', 'python3-pip', 'python3-dev']  # Python
+package ['python3', 'python3-pip', 'python3-dev']  # Python
 #package ['ghc', 'libghc-random-dev', 'cabal-install']  # Haskell
 #package 'golang-go'  # Go
 #package 'erlang'  # Erlang
 #package 'ocaml-nox'  # OCaml
-#package ['rustc', 'cargo']  # Rust
+package ['rustc', 'cargo']  # Rust
 #package 'scala'  # Scala 2.11
 #package ['ruby', 'ruby-dev']  # Ruby
 #package ['openjdk-11-jdk', 'maven']  # Java
@@ -51,16 +51,6 @@ package ['build-essential', 'cmake']
 #package 'clang' # Clang C/C++ compiler
 
 
-# Scala 2.13
-# prerequisite: a Java runtime, openjdk-11-jdk or similar
-#scala_version = '2.13.3'
-#remote_file '/opt/installers/scala.deb' do
-#  # download URL for *.deb from https://scala-lang.org/download/
-#  source "https://downloads.lightbend.com/scala/#{scala_version}/scala-#{scala_version}.deb"
-#end
-#execute 'dpkg -i /opt/installers/scala.deb' do
-#  creates '/usr/bin/scala'
-#end
 
 # SBT
 #execute 'sbt apt key' do
@@ -74,29 +64,18 @@ package ['build-essential', 'cmake']
 #package 'sbt'
 
 
-# .NET Core
-
-#remote_file '/opt/installers/packages-microsoft-prod.deb' do
-#  source "https://packages.microsoft.com/config/ubuntu/#{ubuntu_version}/packages-microsoft-prod.deb"
-#end
-#execute 'dpkg -i /opt/installers/packages-microsoft-prod.deb' do
-#  creates '/etc/apt/sources.list.d/microsoft-prod.list'
-#  notifies :run, 'execute[apt-get update]', :immediately
-#end
-#package ['dotnet-sdk-3.1']
-
 
 # NodeJS (more modern than Ubuntu nodejs package) and NPM
 
-#remote_file '/opt/installers/node-setup.sh' do
-#  source 'https://deb.nodesource.com/setup_14.x'
-#  mode '0755'
-#end
-#execute '/opt/installers/node-setup.sh' do
-#  creates '/etc/apt/sources.list.d/nodesource.list'
-#  notifies :run, 'execute[apt-get update]', :immediately
-#end
-#package ['nodejs']
+remote_file '/opt/installers/node-setup.sh' do
+ source 'https://deb.nodesource.com/setup_14.x'
+ mode '0755'
+end
+execute '/opt/installers/node-setup.sh' do
+ creates '/etc/apt/sources.list.d/nodesource.list'
+ notifies :run, 'execute[apt-get update]', :immediately
+end
+package ['nodejs']
 
 
 # SWIG
@@ -185,3 +164,28 @@ package ['build-essential', 'cmake']
 #execute '/opt/graalvm/bin/gu install llvm-toolchain' do
 #  creates "/opt/#{graalvm_directory}/bin/lli"
 #end
+
+execute 'npm install' do
+  cwd project_home + '/server'
+  user username
+  environment 'HOME' => user_home
+end
+
+execute 'screen -dm npm start' do
+  cwd project_home
+  user username
+  environment 'HOME' => user_home
+end
+
+# execute 'cargo build --release' do
+#   cwd project_home
+#   user username
+#   environment 'HOME' => user_home
+# end
+
+# execute 'python3 embed.py' do
+#   cwd project_home
+#   user username
+#   environment 'HOME' => user_home
+# end
+

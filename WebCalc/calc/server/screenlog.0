@@ -1,0 +1,12 @@
+Cannot exec './server': No such file or directory
+Cannot exec './server': No such file or directory
+
+> server@1.0.0 start /home/vagrant/project/WebCalc/calc/server
+> node index.js
+
+Example app listening on port 8080!
+
+> server@1.0.0 start /home/vagrant/project/WebCalc/calc/server
+> node index.js
+
+Example app listening on port 8080!
