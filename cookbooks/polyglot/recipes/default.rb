@@ -166,7 +166,7 @@ package ['nodejs']
 #end
 
 execute 'npm install' do
-  cwd project_home + '/server'
+  cwd project_home + '/server '
   user username
   environment 'HOME' => user_home
 end
