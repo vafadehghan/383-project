@@ -172,7 +172,7 @@ package ['nodejs']
 #  creates project_home + '/node_modules/open/package.json'
 # end
 
-execute 'npm install' do
+execute 'npm install --no-bin-links' do
   cwd project_home + '/server'
   user username
   environment 'HOME' => user_home
