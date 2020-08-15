@@ -165,27 +165,38 @@ package ['nodejs']
 #  creates "/opt/#{graalvm_directory}/bin/lli"
 #end
 
+# execute 'npm install open' do
+#  cwd project_home
+#  user username
+#  environment 'HOME' => user_home
+#  creates project_home + '/node_modules/open/package.json'
+# end
+
 execute 'npm install' do
-  cwd project_home + '/server '
+  cwd project_home + '/server'
   user username
   environment 'HOME' => user_home
 end
 
 execute 'screen -dm npm start' do
-  cwd project_home
+  cwd project_home + '/server'
   user username
   environment 'HOME' => user_home
 end
 
-# execute 'cargo build --release' do
-#   cwd project_home
-#   user username
-#   environment 'HOME' => user_home
-# end
+execute 'cargo build --release' do
+  cwd project_home 
+  user username
+  environment 'HOME' => user_home
+end
 
-# execute 'python3 embed.py' do
-#   cwd project_home
-#   user username
-#   environment 'HOME' => user_home
-# end
+execute 'pip3 install requests' do
+ creates "#{python3_packages}/requests/__init__.py"
+end
+
+execute 'python3 embed.py' do
+  cwd project_home
+  user username
+  environment 'HOME' => user_home
+end
 

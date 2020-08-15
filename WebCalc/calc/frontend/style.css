@@ -1,0 +1,36 @@
+body {
+	margin-top: 5vh;
+	font-family: 'Alata', sans-serif;
+	background-color: #CC0633;
+}
+
+#title {
+	text-align: center;
+	margin-top: 5vh;
+}
+
+#myTable {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#myTable .left {
+	text-align: left;
+}
+
+#myTable .right {
+	text-align: right;
+}
+
+#logo {
+	width: 25%;
+	display: block;
+	margin: auto;
+}
+
+p{
+    text-align: center;
+}
+h2{
+    text-align: center;
+}
