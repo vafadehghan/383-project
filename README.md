@@ -1,5 +1,10 @@
-This is the template for CMPT 383 projects, providing some basics to get started with various languages in a a consistent environment.
+This project is meant to show off intercommunication between 3 languages (Javascript, Rust, and Python)
 
+The Rust program will calculate fibonacci and Catalan number values and send it to the Python program.
+
+The Python program will time each version of the algorithn (Dynamic Programming, and Recusrive) and send it to a Node.Js server.
+
+Index.html will display these values as well as a time comparison. 
 
 ## Starting the VM
 
