@@ -28,9 +28,19 @@ body {
 	margin: auto;
 }
 
-p{
-    text-align: center;
+p {
+	text-align: center;
 }
-h2{
-    text-align: center;
+
+h2 {
+	text-align: center;
+}
+
+#content {
+	text-align: center;
+}
+
+#content a {
+	margin-top: 12vh;
+	color: white;
 }
