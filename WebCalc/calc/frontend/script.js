@@ -6,7 +6,15 @@ window.onload = function () {
             .then(response => response.json())
             .then(data => {
                 var table = document.getElementById("myTable");
-                for (var i = 0; i <= 45; i++) {
+                var rec = document.getElementById("rec");
+                var dp = document.getElementById("dp");
+                var diff = document.getElementById("diff");
+
+                rec.innerHTML = "Recursive: " + data[20] + " seconds"
+                dp.innerHTML = "Dynamic programming " + data[19] + " seconds"
+                diff.innerHTML = "Recursive took " + (data[20] - data[19]) + " seconds more"
+
+                for (var i = 0; i <= 18; i++) {
                     var row = document.createElement("tr");
                     var key = document.createElement("td");
                     var val = document.createElement("td");
@@ -27,7 +35,15 @@ window.onload = function () {
             .then(response => response.json())
             .then(data => {
                 var table = document.getElementById("myTable");
-                for (var i = 0; i <= 45; i++) {
+                var rec = document.getElementById("rec");
+                var dp = document.getElementById("dp");
+                var diff = document.getElementById("diff");
+
+                rec.innerHTML = "Recursive: " + data[42] + " seconds"
+                dp.innerHTML = "Dynamic programming " + data[41] + " seconds"
+                diff.innerHTML = "Recursive took " + (data[42] - data[41]) + " seconds more"
+
+                for (var i = 0; i <= 40; i++) {
                     var row = document.createElement("tr");
                     var key = document.createElement("td");
                     var val = document.createElement("td");
